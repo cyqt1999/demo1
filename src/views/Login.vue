@@ -32,7 +32,6 @@
     </div>
   </div>
 </template>
-
 <script>
 // @ is an alias to /src
 
@@ -75,27 +74,10 @@ export default {
      * 登录提交验证
      * @param {String} formName获取用户提交的数据
      * **/
-
     submitForm(formName) {
       console.log(formName);
       const _this = this;
       _this.loding = true;
-
-      // _this.$refs[formName].validate(valid => {
-      //   if (valid) {
-      //     _this.$message({
-      //       message: "登录成功！",
-      //       type: "success"
-      //     });
-      //   } else {
-      //     _this.$message({
-      //       message: "登录失败！",
-      //       type: "error"
-      //     });
-      //     return false;
-      //   }
-      // });
-      // _this.loding = false;
     }
   }
 };
