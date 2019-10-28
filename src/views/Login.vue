@@ -131,16 +131,12 @@ export default {
       height: @numMax;
       width: @fifty;
       margin-top: 40px;
-      /**
-      输入框宽度 
-      */
+      // 输入框宽度 
       .el-input {
         width: @borderNumWidth;
         margin-bottom: 30px;
       }
-      /**
-      输入框 边框颜色，去掉圆角
-      */
+      // 输入框 边框颜色，去掉圆角
       /deep/.el-input--prefix .el-input__inner {
         border-color: #1aa73d;
         border-radius: 0;
