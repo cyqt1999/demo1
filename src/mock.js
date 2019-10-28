@@ -1,29 +1,21 @@
-import Mock from 'mockjs';
-
-
-
+//引入mockjs
+const Mock = require('mockjs')
+//获取 mock.Random;
 const Random = Mock.Random;
-
-
-
-var listData = function (){
-    let _data = [];
-    for (let i = 0;i < 20;i ++){
-        let newList = {//详细规则参照mockjs官网
-            title:Random.csentence(5,30),//Random.csentence(min,max)
-            imgSrc:Random.dataImage('200x160','这是图片的文本'),//Random.dataImage(size,text)生成图片（base64位数据格式）
-            author_name:Random.caname(),//Random.cname()随机生成中文名
-            date:Random.date() + ' ' + Random.time()//Random.date()指示生成的日期字符串的格式默认为yyyy-MM-dd;Random.time()返回一个随机的时间字符串
+//使用mockjs模拟数据
+Mock.mock('./api/data',(req,res) => {//当post或get请求到/api/data路由时Mock会拦截请求并返回上面的数据
+    let list = [];
+    for(let i = 0;i < 30; i++){
+        let listObject = {
+            title:Random.csentence(5,10),//随机生成一段中文文本
+            company:Random.csentence(5,10),
+            attention_degree:Random.integer(100,9999),//返回一个随机的整数
+            photo:Random.image('114x83','#00405d','#fff','Mock.js')
 
         }
-        _data.push(newList)
-
+        list.push(listObject);
     }
-    return {
-        _data: _data
-    }
-    //url为要拦截的请求地址 请求方式 请求数据（规则）(此处api会被mockjs拦截)
-    // Mock.mock('http://route.showapi.com/60-27','post',listData)
-    Mock.mock('http://route.showapi.com/60-27', 'post', listData)
-
+return{
+    data:list
 }
+})
