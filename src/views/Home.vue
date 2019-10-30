@@ -15,11 +15,16 @@ export default {
   methods:{
     getMockInfo(){
       const _this = this;
-      _this.$post('news/api').then(res => {
+      _this.axios.post('news/api').then(res => {
         console.log(res);
       }).catch(err => {
         console.log(err);
       })
+      // _this.$post('news/api').then(res => {
+      //   console.log(res);
+      // }).catch(err => {
+      //   console.log(err);
+      // })
     }
   },
 }
