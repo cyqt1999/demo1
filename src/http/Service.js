@@ -1,0 +1,72 @@
+/**
+ * axios封装：请求拦截，响应拦截，错误编码
+ * **/
+import axios from 'axios'
+import {Message,Loading} from 'element-ui'
+const ConfigBaseURL = 'https://localhost:3000/'//默认路径，这里可以使用env来判断环境
+let loadingInstance = null//这里是loading
+
+// 使用create方法创建axios实例
+export const Service = axios.create({
+    timeout:7000,//请求超时时间
+    baseURL:ConfigBaseURL,
+    method:'post',
+    headers:{
+        'Content-Type':'application/json;charset=UTF-8'
+    }
+})
+// 添加请求拦截器
+Service.interceptors.request.use(config => {
+    loadingInstance = Loading.service({
+        lock:true,
+        text:'loading...'
+    })
+    return config
+})
+
+// 添加响应拦截器
+Service.interceptors.response.use(response => {
+     loadingInstance.close()
+     conosle.log(response)
+     return response.data;
+},error => {
+    console.log('TCL:error',error);
+    const msg = error.Message !== undefined ? error.Message : ''
+    Message({
+        message:'网络错误'+ msg,
+        type:'error',
+        duration: 3 * 1000
+    })
+    loadingInstance.close()
+    return Promise.reject(error)
+})
+
+/**
+ * 具体的拦截器逻辑以具体业务为准，我这里没什么逻辑，只是加了一个全局的loading而已
+ * 第二步：封装请求
+ * 
+ * **/ 
+
+ 
+
+// axios.defaults.timeout = 10000;//默认10s请求超时
+
+/**
+ * 
+ * 封装get请求和post请求
+ * 
+ * */ 
+/**
+ * get请求
+ * @param {String} url 请求地址
+ * @param {Object} params 请求参数
+ * **/ 
+
+/**
+ * 封装post
+ * post方法，对应post请求
+ * @param {String} url 请求的URL地址
+ * @param {Object} params 请求时携带的参数
+ * 
+ * 使用方法:  this.$post().then(() => {}, ()=>{})
+ * **/
