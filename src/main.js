@@ -4,7 +4,8 @@ import router from './router'
 import store from './store'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-require('./mock')//此部分引入的是编写的mockjs文档
+import './mock'//这样写是会默认到mock文件夹下找到index文件，执行了index.js中的Mock.mock()下面才会有数据返回
+
 
 Vue.use(ElementUI)
 Vue.config.productionTip = false
