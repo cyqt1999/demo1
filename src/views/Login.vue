@@ -69,11 +69,13 @@ export default {
       _this.loding = true;
       _this.$refs[formName].validate((valid) => {
           if (!valid) {
-            _this.$message.error('用户名或密码错误！');
+            _this.$message.warning('用户名或密码不能为空！');
+            // _this.$message.error('用户名或密码错误！');
             return false;
           } else {
-            _this.$message.success('登录成功！');
             _this.$router.push("/home");
+            _this.$message.success('登录成功！');
+
           }
         });
       _this.loding = false;
