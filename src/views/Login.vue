@@ -73,6 +73,7 @@ export default {
             return false;
           } else {
             _this.$message.success('登录成功！');
+            _this.$router.push("/home");
           }
         });
       _this.loding = false;
